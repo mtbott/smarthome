@@ -17,6 +17,56 @@
     ul { padding-left: 20px; }
     .faq h4 { margin-bottom: 5px; color: #444; }
     footer { background: #121212; color: #fff; padding: 15px; text-align: center; margin-top: 30px; }
+
+.navbar {
+  background: #ff2e63;
+  padding: 10px;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: white;
+  margin: 2px 48px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+.brand {
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    background: #ff2e63;
+    padding: 10px 0;
+  }
+  .nav-links.show {
+    display: flex;
+  }
+  .brand {
+    display: block;
+  }
+  .nav-links a {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+
+
   </style>
 </head>
 <body>
@@ -25,13 +75,20 @@
     <p>Secure Your Home & Stay Connected – CCTV & WiFi Plans at Lowest Price</p>
   </header>
 
-  <nav>
-    <a href="#cctv">Buy Cameras</a>
-    <a href="#rental">Rental Camera Plans</a>
-    <a href="#wifi">WiFi / OTT</a>
-    <a href="#faq">FAQs</a>
-    <a href="https://wa.me/919091544508" target="_blank">Contact on WhatsApp</a>
-  </nav>
+  <!-- Add this in <body> where your nav is -->
+<nav class="navbar">
+  <div class="nav-container">
+    <span class="brand">☰</span>
+    <div class="nav-links" id="navLinks">
+      <a href="#cctv">Buy Cameras</a>
+      <a href="#rental">Rental Camera Plans</a>
+      <a href="#wifi">WiFi / OTT</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
 
   <div class="section" id="cctv">
     <h2>CCTV Cameras for Sale</h2>
@@ -39,13 +96,13 @@
       <img src="https://via.placeholder.com/400x200" alt="CCTV Camera" />
       <h3>Indoor CCTV Camera</h3>
       <p>Price: ₹1,999</p>
-      <button>Buy Now</button>
+      <a href="#contact"><button>Buy Now</button></a>
     </div>
     <div class="product">
       <img src="https://via.placeholder.com/400x200" alt="CCTV Camera" />
       <h3>Outdoor Night Vision CCTV Camera</h3>
       <p>Price: ₹2,999</p>
-      <button>Buy Now</button>
+      <a href="#contact"><button>Buy Now</button></a>
     </div>
   </div>
 
@@ -69,7 +126,7 @@
         <li>Camera will be collected if service is stopped</li>
       </ul>
     </div>
-    <button>Book Installation</button>
+    <a href="#contact"><button>Book Installation</button></a>
   </div>
 
   <div class="section" id="wifi">
@@ -80,7 +137,7 @@
       <li>Only TV OTT Plan: ₹199/month – 7+ OTT (JioHotstar, Netflix, Prime Video, Hoichoi, Zee5, SonyLIV, Disovery+)</li>
       <li>For 2 OTT Device: 349/month</li>
     </ul>
-    <button>Request New Connection</button>
+    <a href="#contact"><button>Request New Connection</button></a>
   </div>
 
   <div class="section faq" id="faq">
@@ -101,9 +158,43 @@
     <p>Yes, you can keep your existing wifi provider. Just contact us if you need a new connection.</p>
   </div>
 
+<div class="section" id="contact">
+  <h2>Contact Us / Book Service</h2>
+  <form action="https://formspree.io/f/mkgbaygq" method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required style="width: 100%; padding: 10px; margin-bottom: 10px;" placeholder="10-digit mobile number"><br>
+
+    <label for="city">City / Town:</label><br>
+    <input type="text" id="city" name="city" required style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
+
+    <label for="service">Interested In:</label><br>
+    <select id="service" name="service" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <option value="Buy Camera">Buy & Install CCTV Camera</option>
+      <option value="Rental Plan">Rental CCTV Camera Plan</option>
+      <option value="OTT Subscriptions">OTT Subscriptions</option>
+      <option value="New WiFi Connection">New WiFi Connection</option>
+    </select><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea><br>
+
+    <button type="submit">Send Request</button>
+  </form>
+  <p style="margin-top: 15px;">Or message us directly on <a href="https://wa.me/919091544508" target="_blank">WhatsApp</a></p>
+</div>
+
   <footer>
-    <p>&copy; 2025 MTB Smart Secure. All rights reserved.</p>
-    <p>Contact: <a href="https://wa.me/919091544508" style="color: #ff2e63">WhatsApp 9091544508</a></p>
+    <p>&copy; 2025 MTB Smart Home. All rights reserved.</p>
   </footer>
+
+<script>
+  document.querySelector('.brand').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('show');
+  });
+</script>
+
 </body>
 </html>
